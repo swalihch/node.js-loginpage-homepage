@@ -1,0 +1,26 @@
+.hero {
+      background-color: #f8f9fa;
+      padding: 100px 20px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      margin-bottom: 30px;
+    }
+
+    footer {
+      background-color: #212529;
+      color: #fff;
+      text-align: center;
+      padding: 15px 0;
+    }
+
+    .navbar-brand {
+      font-weight: bold;
+    }
