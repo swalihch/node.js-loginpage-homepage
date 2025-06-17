@@ -26,8 +26,7 @@ app.get("/",(req,res)=>{
     res.redirect('homepage');
   }else
   {
-    const message = req.session.logoutmsg;
-    req.session.logoutmsg=null;
+    const message = req.query.msg;
     
     if(req.session.passwordwrong){
       req.session.passwordwrong=false;
@@ -71,12 +70,21 @@ app.get('/homepage',(req,res)=>{
   }
 });
 
-app.get('/logout',(req,res)=>{
-  req.session.logoutmsg="You have been logged out.";
-  req.session.user=null;
-  res.redirect('/');
+app.get('/logout', (req, res) => {
+  req.session.destroy(err => {
+    if (err) {
+      return res.redirect('/homepage');
+    }
+    res.redirect('/?msg=You have been logged out.');
+  });
 });
 
+
+
+app.use((req,res,next)=>{
+  res.set("cache-control","no-store");
+  next();
+});
 
 
 const PORT = process.env.PORT || 3005;
