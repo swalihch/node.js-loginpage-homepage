@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const session = require("express-session");
 const nocache = require("nocache");
+app.use(nocache());
 
 app.use(express.static('public'));
 const hbs = require("hbs");
@@ -18,7 +19,6 @@ app.use(session({
   saveUninitialized:true
 }));
 
-app.use(nocache());
 
 app.get("/",(req,res)=>{
 
@@ -64,7 +64,7 @@ app.get('/homepage',(req,res)=>{
       res.render('login',{msg:'Invalid credentials'});
     }
     else{ 
-      res.render('login');
+      res.redirect('/');
     }
 
   }
